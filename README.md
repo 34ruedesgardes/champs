@@ -16,7 +16,7 @@ SYNC_TOLERANCE : Tolérance de sync pour omxplayer-sync (défaut: .05)
 OMXPLAYER_WAIT = Durée d'attente du lancement de omxplayer par omxplayer-sync (défaut: 2)
 VIDEO_FILENAME = Nom du fichier vidéo à jouer. Il doit se situer dans le répertoire /var/lib/videos/ sur tous les périphériques (défaut: synctest.mp4)
 OMXPLAYER_SYNC_MODE = Mode de omxplayer-sync. master ou slave (défaut: slave)
-
+```
 
 ## Exemples
 
