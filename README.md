@@ -18,9 +18,9 @@ VIDEO_FILENAME = Nom du fichier vidéo à jouer. Il doit se situer dans le répe
 OMXPLAYER_SYNC_MODE = Mode de omxplayer-sync. master ou slave (défaut: slave)
 ```
 
-## Exemples
+### Exemples
 
-### Configuration d'un master avec des valeurs par défaut et un fichier vidéo particulier
+#### Configuration d'un master avec des valeurs par défaut et un fichier vidéo particulier
 
 ```bash
 cd champs
