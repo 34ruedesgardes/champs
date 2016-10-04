@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-apt update && apt install -y git make
+sudo apt update && sudo apt install -y git make
 git clone https://github.com/34ruedesgardes/champs.git
 cd champs
 make bootstrap
