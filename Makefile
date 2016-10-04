@@ -5,7 +5,7 @@ OMXPLAYER_SYNC_MODE = slave
 
 default:
 	sudo apt update
-	sudo apt install -y gdebi-core
+	sudo apt install -y gdebi-core python-dbus
 	sudo wget -N http://omxplayer.sconde.net/builds/omxplayer_0.3.7~git20160713~66f9076_armhf.deb
 	sudo gdebi -n omxplayer_0.3.7~git20160713~66f9076_armhf.deb
 	sudo rm -f /usr/bin/omxplayer-sync
