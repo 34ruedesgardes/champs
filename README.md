@@ -26,5 +26,5 @@ OMXPLAYER_SYNC_MODE = Mode de omxplayer-sync. master ou slave (défaut: slave)
 
 ```bash
 cd champs
-make configure OMXPLAYER_SYNC_MODE=master VIDEO_FILENAME=mavideo.mov
+make configure OMXPLAYER_SYNC_MODE=master OMXPLAYER_WAIT=20 VIDEO_FILENAME=mavideo.mov
 ```
