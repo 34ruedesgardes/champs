@@ -14,6 +14,12 @@ bootstrap:
 	wget -O- https://raw.githubusercontent.com/turingmachine/omxplayer-sync/master/omxplayer-sync | sudo tee /usr/local/bin/omxplayer-sync
 
 configure:
+	# Désactivation du wifi et du bluetooth
+	sudo ifdown wlan0
+	echo "blacklist brcmfmac" | sudo tee /etc/modprobe.d/raspi-blacklist.conf
+	echo "blacklist brcmutil" | sudo tee -a /etc/modprobe.d/raspi-blacklist.conf
+	echo "blacklist btbcm" | sudo tee -a /etc/modprobe.d/raspi-blacklist.conf
+	echo "blacklist hci_uart" | sudo tee -a /etc/modprobe.d/raspi-blacklist.conf
 	sudo sed -i "s/^SYNC_TOLERANCE = \..*/SYNC_TOLERANCE = ${SYNC_TOLERANCE}/" /usr/local/bin/omxplayer-sync
 	sudo sed -i "s/sleep(.*) # wait for omxplayer to appear on dbus/sleep(${OMXPLAYER_WAIT}) # wait for omxplayer to appear on dbus/" /usr/local/bin/omxplayer-sync
 	sudo chmod +x /usr/local/bin/omxplayer-sync

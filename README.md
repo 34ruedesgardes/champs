@@ -5,7 +5,7 @@
 ```bash
 sudo apt update && sudo apt install -y git make
 git clone https://github.com/34ruedesgardes/champs.git
-cd champs
+cd ~/champs
 make bootstrap
 ```
 
@@ -25,6 +25,6 @@ OMXPLAYER_SYNC_MODE = Mode de omxplayer-sync. master ou slave (défaut: slave)
 #### Configuration d'un master avec des valeurs par défaut et un fichier vidéo particulier
 
 ```bash
-cd champs
+cd ~/champs
 make configure OMXPLAYER_SYNC_MODE=master OMXPLAYER_WAIT=20 VIDEO_FILENAME=mavideo.mov
 ```
