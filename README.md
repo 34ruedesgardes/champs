@@ -1,10 +1,12 @@
 # Usage
 
-## Installation 
+## Installation
 
 ```bash
 apt update && apt install -y git make
 git clone https://github.com/34ruedesgardes/champs.git
+cd champs
+make bootstrap
 ```
 
 ## Usage
@@ -24,5 +26,5 @@ OMXPLAYER_SYNC_MODE = Mode de omxplayer-sync. master ou slave (défaut: slave)
 
 ```bash
 cd champs
-make OMXPLAYER_SYNC_MODE=master VIDEO_FILENAME=mavideo.mov
+make configure OMXPLAYER_SYNC_MODE=master VIDEO_FILENAME=mavideo.mov
 ```
