@@ -4,7 +4,7 @@
 
 ```bash
 apt update && apt install -y git make
-git clone https://github.com/constructions-incongrues/champs.git
+git clone https://github.com/34ruedesgardes/champs.git
 ```
 
 ## Usage
