@@ -6,7 +6,7 @@
 sudo apt update && sudo apt install -y git make
 git clone https://github.com/34ruedesgardes/champs.git
 cd ~/champs
-sudo make bootstrap
+sudo make bootstrap clean
 ```
 
 ## Usage

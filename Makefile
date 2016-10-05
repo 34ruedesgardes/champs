@@ -44,8 +44,12 @@ configure:
 	sed -i "s/sleep(.*) # wait for omxplayer to appear on dbus/sleep(${OMXPLAYER_WAIT}) # wait for omxplayer to appear on dbus/" /usr/local/bin/omxplayer-sync
 
 	# Configuration de supervisor
-	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync.conf
-	echo "$$SUPERVISOR_PROGRAM_SLAVE" >> /etc/supervisor/conf.d/omxplayer-sync.conf
+	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync-master.conf
+	echo "$$SUPERVISOR_PROGRAM_SLAVE" >> /etc/supervisor/conf.d/omxplayer-sync-slave.conf
+	if [ "${OMXPLAYER_SYNC_MODE}" = "slave" ]; then sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-slave.conf; else sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-master.conf; fi
 	service supervisor restart
 	supervisorctl status
-	if [ "${OMXPLAYER_SYNC_MODE}" = "slave" ]; then supervisorctl start omxplayer-sync-slave; else supervisorctl start omxplayer-sync-master; fi
+
+clean:
+	rm -f /etc/profile.d/omxplayer*
+	rm -f /etc/supervisor/conf.d/omxplayer-sync*.conf
