@@ -49,7 +49,7 @@ configure:
 	if [ "${OMXPLAYER_SYNC_MODE}" = "slave" ]; then sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-slave.conf; else sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-master.conf; fi
 	service supervisor start
 	supervisorctl status
-	if [ "${OMXPLAYER_SYNC_MODE}" = "slave" ]; then supervisorctl restart omxplayer-sync-master; fi
+	if [ "${OMXPLAYER_SYNC_MODE}" = "master" ]; then supervisorctl restart omxplayer-sync-master; fi
 
 clean:
 	rm -f /etc/profile.d/omxplayer*
