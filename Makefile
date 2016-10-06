@@ -1,11 +1,12 @@
 SYNC_TOLERANCE = .05
 OMXPLAYER_WAIT = 2
+OMXPLAYER_SYNC_MASTER_STARTUP_DELAY = 5
 VIDEO_FILENAME = synctest.mp4
 OMXPLAYER_SYNC_MODE = slave
 
 define SUPERVISOR_PROGRAM_MASTER
 [program:omxplayer-sync-master]
-command=bash -c 'sleep 5 && /usr/local/bin/omxplayer-sync -muvb /var/lib/videos/$(VIDEO_FILENAME)'
+command=bash -c 'sleep $(OMXPLAYER_SYNC_MASTER_STARTUP_DELAY) && /usr/local/bin/omxplayer-sync -muvb /var/lib/videos/$(VIDEO_FILENAME)'
 autostart=false
 redirect_stderr=true
 killasgroup=true
