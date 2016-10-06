@@ -5,7 +5,7 @@ OMXPLAYER_SYNC_MODE = slave
 
 define SUPERVISOR_PROGRAM_MASTER
 [program:omxplayer-sync-master]
-command=sleep 5 && /usr/local/bin/omxplayer-sync -muvb /var/lib/videos/$(VIDEO_FILENAME)
+command=bash -c 'sleep 5 && /usr/local/bin/omxplayer-sync -muvb /var/lib/videos/$(VIDEO_FILENAME)'
 autostart=false
 redirect_stderr=true
 killasgroup=true
@@ -51,8 +51,6 @@ configure:
 	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync-master.conf
 	echo "$$SUPERVISOR_PROGRAM_SLAVE" >> /etc/supervisor/conf.d/omxplayer-sync-slave.conf
 	if [ "${OMXPLAYER_SYNC_MODE}" = "slave" ]; then sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-slave.conf; else sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-master.conf; fi
-	service supervisor start
-	supervisorctl status
 
 clean:
 	rm -f /etc/profile.d/omxplayer*
