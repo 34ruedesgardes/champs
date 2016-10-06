@@ -46,7 +46,7 @@ configure:
 	echo "blacklist hci_uart" >> /etc/modprobe.d/raspi-blacklist.conf
 
 	# Configuration du HDMI drive
-	sed -i 's/#\?hdmi_drive=[0-9]/hdmi_drive=$(HDMI_DRIVE)/' /boot/config.txt
+	sed -i 's/#\?hdmi_drive=[0-9]\+/hdmi_drive=$(HDMI_DRIVE)/' /boot/config.txt
 
 	# Mise à jour des valeurs en dur dans omxplayer-sync
 	sed -i "s/^SYNC_TOLERANCE = \
