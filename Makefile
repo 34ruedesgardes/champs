@@ -4,6 +4,7 @@ OMXPLAYER_SYNC_MASTER_STARTUP_DELAY = 5
 VIDEO_FILENAME = synctest.mp4
 OMXPLAYER_SYNC_MODE = slave
 OMXPLAYER_VERBOSITY = v
+HDMI_DRIVE = 2
 
 define SUPERVISOR_PROGRAM_MASTER
 [program:omxplayer-sync-master]
@@ -43,6 +44,9 @@ configure:
 	echo "blacklist brcmutil" >> /etc/modprobe.d/raspi-blacklist.conf
 	echo "blacklist btbcm" >> /etc/modprobe.d/raspi-blacklist.conf
 	echo "blacklist hci_uart" >> /etc/modprobe.d/raspi-blacklist.conf
+
+	# Configuration du HDMI drive
+	sed -i 's/#\?hdmi_drive=[0-9]/hdmi_drive=$(HDMI_DRIVE)/' /boot/config.txt
 
 	# Mise à jour des valeurs en dur dans omxplayer-sync
 	sed -i "s/^SYNC_TOLERANCE = \
