@@ -12,7 +12,7 @@ autostart=false
 redirect_stderr=true
 killasgroup=true
 stopasgroup=true
-startsecs=5
+startsecs=20
 endef
 export SUPERVISOR_PROGRAM_MASTER
 
@@ -23,7 +23,7 @@ autostart=false
 redirect_stderr=true
 killasgroup=true
 stopasgroup=true
-startsecs=5
+startsecs=20
 endef
 export SUPERVISOR_PROGRAM_SLAVE
 
