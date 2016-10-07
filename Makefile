@@ -64,6 +64,9 @@ configure:
 	..*/SYNC_TOLERANCE = ${SYNC_TOLERANCE}/" /usr/local/bin/omxplayer-sync
 	sed -i "s/sleep(.*) # wait for omxplayer to appear on dbus/sleep(${OMXPLAYER_WAIT}) # wait for omxplayer to appear on dbus/" /usr/local/bin/omxplayer-sync
 
+	# Désactivation du sauveur d'écran
+	sed -i "s/xserver-command=.\+/xserver-command=X -s 0 -dpms/" /etc/lightdm/lightdm.conf  | grep xserver-command
+
 	# Configuration de supervisor
 	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync-master.conf
 	echo "$$SUPERVISOR_PROGRAM_SLAVE" >> /etc/supervisor/conf.d/omxplayer-sync-slave.conf
