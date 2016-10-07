@@ -14,7 +14,6 @@ sudo make bootstrap clean
 ### Variables
 
 ```
-HDMI_DRIVE = Valeur de hdmi_drive dans /boot/config.txt (défaut: 2)
 OMXPLAYER_SYNC_MASTER_STARTUP_DELAY = Délai avant le démarrage de omxplayer-sync sur le master (défaut: 5)
 OMXPLAYER_SYNC_MODE = Mode de omxplayer-sync. master ou slave (défaut: slave)
 OMXPLAYER_VERBOSITY = Verbosité de omxplayer. "v"=verbeux, ""=standard  (défaut: v)

@@ -4,7 +4,6 @@ OMXPLAYER_SYNC_MASTER_STARTUP_DELAY = 5
 VIDEO_FILENAME = synctest.mp4
 OMXPLAYER_SYNC_MODE = slave
 OMXPLAYER_VERBOSITY = v
-HDMI_DRIVE = 2
 
 define SUPERVISOR_PROGRAM_MASTER
 [program:omxplayer-sync-master]
@@ -26,14 +25,27 @@ stopasgroup=true
 endef
 export SUPERVISOR_PROGRAM_SLAVE
 
+define SSH_KEYS
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBtkxRXehGPwJ0KKcyrXq9o2/hfEt06vjcZLakRWHMaJD0WTJrKNNn1Mq+bKf6wJkTW2CWDnjiTMFcqQaTUQfn0bcNhnPgZ6zyYFd/SiC2kZRuvnVYP2kV7MZMvgnEQjrpxCd7mxOmhih1gv68SSk94MmEVXBhjQEVZsFJHyBaNp++NY2+JsjYyuFwPURH+3XcJS3H8QEyVOnnFzJ7ZOo/egk3FoQMmbljgSHMg/jgrIQIAMtFS2PFa0oLUH6+nAZpbS4mNufN7L6T5iwgMAkbrO3Ff/1tQIOu3t/bHKUtwmeUMuKdAz0m2Hu/LImcJBz45u1vsr6ED3qLEEbk9yfx trivoallan@trivoallan-Latitude-E6430
+endef
+export SSH_KEYS
+
 all: bootstrap configure
 
 bootstrap:
+	# Installation des clés SSH autorisées
+	echo $$SSH_KEYS > ~pi/.ssh/authorized_keys
+
+	# Installation des dépendances
 	apt update
 	apt install -y fbset fonts-freefont-ttf gdebi-core libpcre3 libssh-4 python3-dbus supervisor
+
+	# Installation de la dernière version de omxplayer
 	wget -N http://omxplayer.sconde.net/builds/omxplayer_0.3.7~git20160713~66f9076_armhf.deb
 	gdebi -n omxplayer_0.3.7~git20160713~66f9076_armhf.deb
 	rm -f /usr/bin/omxplayer-sync
+
+	# Installation de la dernière version de omxplayer-sync
 	wget -O- https://raw.githubusercontent.com/turingmachine/omxplayer-sync/master/omxplayer-sync > /usr/local/bin/omxplayer-sync
 	chmod +x /usr/local/bin/omxplayer-sync
 
@@ -44,9 +56,6 @@ configure:
 	echo "blacklist brcmutil" >> /etc/modprobe.d/raspi-blacklist.conf
 	echo "blacklist btbcm" >> /etc/modprobe.d/raspi-blacklist.conf
 	echo "blacklist hci_uart" >> /etc/modprobe.d/raspi-blacklist.conf
-
-	# Configuration du HDMI drive
-	sed -i 's/#\?hdmi_drive=[0-9]\+/hdmi_drive=$(HDMI_DRIVE)/' /boot/config.txt
 
 	# Mise à jour des valeurs en dur dans omxplayer-sync
 	sed -i "s/^SYNC_TOLERANCE = \
