@@ -51,7 +51,6 @@ bootstrap:
 	wget -O- https://raw.githubusercontent.com/turingmachine/omxplayer-sync/master/omxplayer-sync > /usr/local/bin/omxplayer-sync
 	chmod +x /usr/local/bin/omxplayer-sync
 
-configure:
 	# Désactivation du wifi et du bluetooth
 	ifdown wlan0
 	echo "blacklist brcmfmac" > /etc/modprobe.d/raspi-blacklist.conf
@@ -67,6 +66,7 @@ configure:
 	# Désactivation du sauveur d'écran
 	sed -i "s/xserver-command=.\+/xserver-command=X -s 0 -dpms/" /etc/lightdm/lightdm.conf  | grep xserver-command
 
+configure:
 	# Configuration de supervisor
 	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync-master.conf
 	echo "$$SUPERVISOR_PROGRAM_SLAVE" >> /etc/supervisor/conf.d/omxplayer-sync-slave.conf
