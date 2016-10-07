@@ -1,6 +1,6 @@
 SYNC_TOLERANCE = .05
 OMXPLAYER_WAIT = 2
-OMXPLAYER_SYNC_MASTER_STARTUP_DELAY = 25
+OMXPLAYER_SYNC_MASTER_STARTUP_DELAY = 5
 VIDEO_FILENAME = synctest.mp4
 OMXPLAYER_SYNC_MODE = slave
 OMXPLAYER_VERBOSITY = v
@@ -12,7 +12,7 @@ autostart=false
 redirect_stderr=true
 killasgroup=true
 stopasgroup=true
-startsecs=15
+startsecs=20
 endef
 export SUPERVISOR_PROGRAM_MASTER
 
@@ -23,7 +23,7 @@ autostart=false
 redirect_stderr=true
 killasgroup=true
 stopasgroup=true
-startsecs=15
+startsecs=20
 endef
 export SUPERVISOR_PROGRAM_SLAVE
 
