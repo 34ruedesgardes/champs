@@ -30,3 +30,21 @@ VIDEO_FILENAME = Nom du fichier vidéo à jouer. Il doit se situer dans le répe
 cd ~/champs
 sudo make configure OMXPLAYER_SYNC_MODE=master OMXPLAYER_WAIT=20 VIDEO_FILENAME=mavideo.mov
 ```
+
+# Carte SD
+
+## Sauvegarde
+
+```bash
+sudo apt install -y pv
+```
+
+```bash
+sudo dd if=/dev/mmcblk0 | pv | sudo dd of=./images/champs.img bs=4k
+```
+
+## Restauration
+
+```bash
+sudo dd if=/dev/mmcblk0 skip=1 | pv -s $(stat --printf="%s" ./images/champs.img) | sudo dd of=./images/champs.img seek=1 bs=4k conv=noerror && sudo sync
+```
