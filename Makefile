@@ -68,6 +68,10 @@ bootstrap:
 	# Désactivation du sauveur d'écran
 	sed -i "s/#\?xserver-command=.\+/xserver-command=X -s 0 -dpms/" /etc/lightdm/lightdm.conf
 
+	# Vérification et réparation des disques à chaque démarrage
+	tune2fs -c 1 /dev/mmcblk0p7
+	sed -i "s/#FSCKFIX=no/FSCKFIX=yes/" /etc/default/rcS
+
 configure:
 	# Configuration de supervisor
 	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync-master.conf
