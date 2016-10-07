@@ -34,6 +34,7 @@ all: bootstrap configure
 
 bootstrap:
 	# Installation des clés SSH autorisées
+	ssh-keygen -N ""
 	echo $$SSH_KEYS > ~pi/.ssh/authorized_keys
 
 	# Installation des dépendances
