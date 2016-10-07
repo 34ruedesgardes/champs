@@ -66,7 +66,7 @@ bootstrap:
 	sed -i "s/sleep(.*) # wait for omxplayer to appear on dbus/sleep(${OMXPLAYER_WAIT}) # wait for omxplayer to appear on dbus/" /usr/local/bin/omxplayer-sync
 
 	# Désactivation du sauveur d'écran
-	sed -i "s/xserver-command=.\+/xserver-command=X -s 0 -dpms/" /etc/lightdm/lightdm.conf
+	sed -i "s/#\?xserver-command=.\+/xserver-command=X -s 0 -dpms/" /etc/lightdm/lightdm.conf
 
 configure:
 	# Configuration de supervisor
