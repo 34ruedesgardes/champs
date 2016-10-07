@@ -69,7 +69,7 @@ bootstrap:
 configure:
 	# Configuration de supervisor
 	echo "$$SUPERVISOR_PROGRAM_MASTER" > /etc/supervisor/conf.d/omxplayer-sync-master.conf
-	echo "$$SUPERVISOR_PROGRAM_SLAVE" >> /etc/supervisor/conf.d/omxplayer-sync-slave.conf
+	echo "$$SUPERVISOR_PROGRAM_SLAVE" > /etc/supervisor/conf.d/omxplayer-sync-slave.conf
 	if [ "${OMXPLAYER_SYNC_MODE}" = "slave" ]; then sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-slave.conf; else sed -i "s/autostart=false/autostart=true/" /etc/supervisor/conf.d/omxplayer-sync-master.conf; fi
 	supervisorctl update
 
