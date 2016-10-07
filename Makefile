@@ -9,10 +9,10 @@ define SUPERVISOR_PROGRAM_MASTER
 [program:omxplayer-sync-master]
 command=bash -c 'sleep $(OMXPLAYER_SYNC_MASTER_STARTUP_DELAY) && /usr/local/bin/omxplayer-sync -mu$(OMXPLAYER_VERBOSITY)b /var/lib/videos/$(VIDEO_FILENAME)'
 autostart=false
+autorestart=true
 redirect_stderr=true
 killasgroup=true
 stopasgroup=true
-startsecs=20
 endef
 export SUPERVISOR_PROGRAM_MASTER
 
@@ -20,10 +20,10 @@ define SUPERVISOR_PROGRAM_SLAVE
 [program:omxplayer-sync-slave]
 command=/usr/local/bin/omxplayer-sync -lu$(OMXPLAYER_VERBOSITY)b /var/lib/videos/$(VIDEO_FILENAME)
 autostart=false
+autorestart=true
 redirect_stderr=true
 killasgroup=true
 stopasgroup=true
-startsecs=20
 endef
 export SUPERVISOR_PROGRAM_SLAVE
 
